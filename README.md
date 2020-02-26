@@ -7,6 +7,11 @@ arp_spoof is intented ONLY for EDUCATIONAL PURPOSES.
 ## Requirements
 Python
 
+Enable *ip_foreward*
+```bash
+sudo bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
+```
+
 ## Installation
 Instructions on how to install *arp_spoof*
 ```bash
