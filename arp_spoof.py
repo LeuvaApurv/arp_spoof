@@ -48,6 +48,6 @@ try:
         sys.stdout.flush()
         time.sleep(2)
 except KeyboardInterrupt:
-    print("\n\033[1;32;40m[+] Detected CTRL + C ....... Resetting ARP tables...... Please wait.\n")
+    print("\n\n\033[1;32;40m[+] Detected CTRL + C ....... Resetting ARP tables...... Please wait.\n")
     restore(options.target_ip, options.gateway_ip)
     restore(options.gateway_ip, options.target_ip)
