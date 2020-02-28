@@ -39,15 +39,15 @@ def restore(destination_ip, source_ip):
 try:
     options = get_arguments()
     sent_packet_count = 0
-    print("[-] Exit from This proocess to Press CTRL + C\n")
+    print("\n\033[91m[-] Exit from This proocess to Press CTRL + C\n")
     while True:
         spoof(options.target_ip, options.gateway_ip)
         spoof(options.gateway_ip, options.target_ip)
         sent_packet_count += 2
-        print("\r[+] Packets sent: " + str(sent_packet_count)),
+        print("\r\033[93m[+] Packets sent: " + str(sent_packet_count)),
         sys.stdout.flush()
         time.sleep(2)
 except KeyboardInterrupt:
-    print("\n[+] Detected CTRL + C ....... Resetting ARP tables...... Please wait.\n")
+    print("\n\033[92m[+] Detected CTRL + C ....... Resetting ARP tables...... Please wait.\n")
     restore(options.target_ip, options.gateway_ip)
     restore(options.gateway_ip, options.target_ip)
