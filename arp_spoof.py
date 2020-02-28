@@ -44,10 +44,10 @@ try:
         spoof(options.target_ip, options.gateway_ip)
         spoof(options.gateway_ip, options.target_ip)
         sent_packet_count += 2
-        print("\r\033[93m[+] Packets sent: " + str(sent_packet_count)),
+        print("\r\n\033[93m[+] Packets sent: " + str(sent_packet_count) + "\n"),
         sys.stdout.flush()
         time.sleep(2)
 except KeyboardInterrupt:
-    print("\n\033[92m[+] Detected CTRL + C ....... Resetting ARP tables...... Please wait.\n")
+    print("\n\033[1;32;40m[+] Detected CTRL + C ....... Resetting ARP tables...... Please wait.\n")
     restore(options.target_ip, options.gateway_ip)
     restore(options.gateway_ip, options.target_ip)
